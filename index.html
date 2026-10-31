@@ -1,1 +1,527 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#24382f" />
+  <title>Meu Planejador de Viagens</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">✦</div>
+      <div>
+        <strong>meu planejador</strong>
+        <small>DE VIAGENS</small>
+      </div>
+    </div>
+
+    <div class="workspace-label">ESPAÇO DE VIAGEM</div>
+
+    <button class="trip-switcher" id="tripSwitcher">
+      <span class="trip-thumb">🏔️</span>
+      <span>
+        <b id="sideTripName">Gramado & Canela</b>
+        <small id="sideTripDates">Minha viagem</small>
+      </span>
+      <span class="chevron">⌄</span>
+    </button>
+
+    <nav class="nav">
+
+      <button class="nav-item active" data-view="overview">
+        <span>◫</span> Visão geral
+      </button>
+
+      <button class="nav-item" data-view="expenses">
+        <span>＄</span> Financeiro
+      </button>
+
+      <button class="nav-item" data-view="activities">
+        <span>⌖</span> Passeios
+      </button>
+
+      <button class="nav-item" data-view="restaurants">
+        <span>♨</span> Restaurantes
+      </button>
+
+      <button class="nav-item" data-view="itinerary">
+        <span>▦</span> Roteiro diário
+      </button>
+
+      <button class="nav-item" data-view="checklist">
+        <span>☑</span> Checklist
+      </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+      <div class="help-card">
+        <div class="help-icon">✧</div>
+        <b>Sua próxima aventura começa aqui.</b>
+        <p>Organize os detalhes e aproveite cada momento.</p>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">M</div>
+        <div>
+          <b>Meu perfil</b>
+          <small>Área pessoal</small>
+        </div>
+        <span class="more">···</span>
+      </div>
+
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+
+      <div class="breadcrumb">
+        Minhas viagens
+        <span>/</span>
+        <b id="crumbTitle">Gramado & Canela</b>
+      </div>
+
+      <div class="top-actions">
+
+        <span class="sync-status" id="syncStatus">
+          <i></i> Modo demonstração
+        </span>
+
+        <button class="icon-btn" title="Notificações">♧</button>
+
+        <button class="share-btn" id="shareBtn">
+          ↗ <span>Compartilhar viagem</span>
+        </button>
+
+      </div>
+
+    </header>
+
+    <section class="content">
+
+      <div class="page-heading">
+
+        <div>
+          <div class="eyebrow" id="pageEyebrow">
+            SUA PRÓXIMA AVENTURA
+          </div>
+
+          <h1 id="pageTitle">
+            Gramado & Canela
+            <span class="edit-title" title="Editar viagem">✎</span>
+          </h1>
+
+          <p id="pageSubtitle">
+            Tudo organizado para você aproveitar cada momento.
+          </p>
+        </div>
+
+        <button class="primary-btn" id="addBtn">
+          ＋ <span id="addBtnText">Adicionar despesa</span>
+        </button>
+
+      </div>
+
+      <!-- VISÃO GERAL -->
+
+      <section id="overviewView" class="view active">
+
+        <div class="hero-card">
+
+          <div class="hero-copy">
+
+            <span class="hero-tag">
+              ✦ PLANEJE. VIAJE. VIVA.
+            </span>
+
+            <h2>
+              Boas viagens começam<br>
+              com um bom planejamento.
+            </h2>
+
+            <p>
+              Seu roteiro, orçamento e experiências em um só lugar.
+            </p>
+
+            <div class="hero-meta">
+              <span>⌖ Gramado, RS</span>
+              <span>⌖ Canela, RS</span>
+            </div>
+
+          </div>
+
+          <div class="hero-art">
+            <div class="sun"></div>
+            <div class="mountain m1"></div>
+            <div class="mountain m2"></div>
+            <div class="pine p1">♠</div>
+            <div class="pine p2">♠</div>
+            <div class="pine p3">♠</div>
+          </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Orçamento planejado</span>
+              <span class="stat-icon violet">◎</span>
+            </div>
+            <strong id="budgetTotal">R$ 10.385,28</strong>
+            <small>Estimativa total da viagem</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Valor já pago</span>
+              <span class="stat-icon green">✓</span>
+            </div>
+            <strong id="paidTotal">R$ 7.706,28</strong>
+            <small>
+              <span class="positive" id="paidPercent">74,2%</span>
+              do orçamento
+            </small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Em aberto</span>
+              <span class="stat-icon orange">◷</span>
+            </div>
+            <strong id="pendingTotal">R$ 2.679,00</strong>
+            <small>Valores ainda não pagos</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Experiências</span>
+              <span class="stat-icon blue">⌖</span>
+            </div>
+            <strong id="activityCount">12</strong>
+            <small>Passeios cadastrados</small>
+          </article>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+          <article class="panel budget-panel">
+
+            <div class="panel-heading">
+              <div>
+                <h3>Resumo financeiro</h3>
+                <p>Acompanhe o andamento do seu orçamento</p>
+              </div>
+
+              <button class="text-btn" data-goto="expenses">
+                Ver detalhes →
+              </button>
+            </div>
+
+            <div class="budget-number">
+              <strong id="budgetUsed">R$ 7.706,28</strong>
+              <span>
+                de <b id="budgetCap">R$ 10.385,28</b>
+              </span>
+            </div>
+
+            <div class="progress">
+              <span id="budgetProgress" style="width:74.2%"></span>
+            </div>
+
+            <div class="legend">
+              <span><i class="dot paid-dot"></i> Pago</span>
+              <span><i class="dot pending-dot"></i> Pendente</span>
+            </div>
+
+            <div class="category-list" id="categorySummary"></div>
+
+          </article>
+
+          <article class="panel next-panel">
+
+            <div class="panel-heading">
+              <div>
+                <h3>Próximos passos</h3>
+                <p>Deixe tudo pronto para viajar</p>
+              </div>
+
+              <span class="mini-badge">CHECKLIST</span>
+            </div>
+
+            <div class="task-list" id="taskSummary"></div>
+
+            <button class="outline-btn" data-goto="checklist">
+              Ver checklist completo →
+            </button>
+
+          </article>
+
+        </div>
+
+        <div class="panel recent-panel">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Despesas planejadas</h3>
+              <p>Os principais custos da sua viagem</p>
+            </div>
+
+            <button class="text-btn" data-goto="expenses">
+              Ver todas →
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>DESCRIÇÃO</th>
+                  <th>CATEGORIA</th>
+                  <th>VALOR</th>
+                  <th>PAGAMENTO</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+
+              <tbody id="recentExpenses"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- FINANCEIRO -->
+
+      <section id="expensesView" class="view">
+
+        <div class="section-intro">
+          <div>
+            <h2>Controle financeiro</h2>
+            <p>Tenha clareza sobre cada gasto, parcela e pagamento.</p>
+          </div>
+
+          <div class="filter-pill">Todos os lançamentos⌄</div>
+        </div>
+
+        <div class="stats-grid compact">
+
+          <article class="stat-card">
+            <span>Orçamento</span>
+            <strong id="expBudget">—</strong>
+          </article>
+
+          <article class="stat-card">
+            <span>Pago</span>
+            <strong class="green-text" id="expPaid">—</strong>
+          </article>
+
+          <article class="stat-card">
+            <span>Pendente</span>
+            <strong class="orange-text" id="expPending">—</strong>
+          </article>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Todos os lançamentos</h3>
+              <p>Marque como pago ou atualize os valores.</p>
+            </div>
+
+            <button class="primary-btn small" id="newExpense">
+              ＋ Nova despesa
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>DESCRIÇÃO</th>
+                  <th>CATEGORIA</th>
+                  <th>VALOR</th>
+                  <th>FORMA</th>
+                  <th>PARCELAS</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+
+              <tbody id="expenseRows"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- PASSEIOS -->
+
+      <section id="activitiesView" class="view">
+
+        <div class="section-intro">
+          <div>
+            <h2>Passeios e experiências</h2>
+            <p>Suas atrações, lugares e experiências imperdíveis.</p>
+          </div>
+
+          <button class="primary-btn small" id="newActivity">
+            ＋ Adicionar passeio
+          </button>
+        </div>
+
+        <div class="tile-grid" id="activityGrid"></div>
+
+      </section>
+
+      <!-- RESTAURANTES -->
+
+      <section id="restaurantsView" class="view">
+
+        <div class="section-intro">
+          <div>
+            <h2>Restaurantes</h2>
+            <p>Organize onde comer durante a viagem.</p>
+          </div>
+
+          <button class="primary-btn small" id="newRestaurant">
+            ＋ Adicionar restaurante
+          </button>
+        </div>
+
+        <div class="tile-grid" id="restaurantGrid"></div>
+
+      </section>
+
+      <!-- ROTEIRO -->
+
+      <section id="itineraryView" class="view">
+
+        <div class="section-intro">
+          <div>
+            <h2>Roteiro diário</h2>
+            <p>Distribua seus passeios e refeições ao longo dos dias.</p>
+          </div>
+
+          <button class="primary-btn small" id="newPlan">
+            ＋ Adicionar atividade
+          </button>
+        </div>
+
+        <div class="empty-state">
+          <div class="empty-illustration">▤</div>
+          <h3>Seu roteiro está esperando por você</h3>
+          <p>
+            Adicione horários, locais e atividades para montar o dia perfeito.
+          </p>
+          <button class="outline-btn" id="startPlan">
+            Criar primeiro compromisso
+          </button>
+        </div>
+
+      </section>
+
+      <!-- CHECKLIST -->
+
+      <section id="checklistView" class="view">
+
+        <div class="section-intro">
+          <div>
+            <h2>Checklist da viagem</h2>
+            <p>Pequenas tarefas que fazem toda a diferença.</p>
+          </div>
+
+          <button class="primary-btn small" id="newTask">
+            ＋ Nova tarefa
+          </button>
+        </div>
+
+        <div class="panel checklist-panel">
+
+          <div class="check-progress">
+            <span id="checkProgressText">0 de 6 concluídos</span>
+
+            <div class="progress">
+              <span id="checkProgressBar" style="width:0%"></span>
+            </div>
+          </div>
+
+          <div id="checklistItems"></div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-backdrop" id="modalBackdrop">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <div>
+        <span class="eyebrow">MEU PLANEJADOR</span>
+        <h2 id="modalTitle">Adicionar despesa</h2>
+      </div>
+
+      <button class="close-btn" id="closeModal">×</button>
+
+    </div>
+
+    <form id="itemForm">
+
+      <div id="formFields"></div>
+
+      <div class="modal-actions">
+
+        <button type="button" class="outline-btn" id="cancelModal">
+          Cancelar
+        </button>
+
+        <button type="submit" class="primary-btn">
+          Salvar
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
